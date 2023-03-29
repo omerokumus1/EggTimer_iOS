@@ -10,10 +10,10 @@ import UIKit
 class ViewController: UIViewController {
 
     let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 5]
-    var secondsRemaining = 0
-    var timer: Timer? = nil
-    var titleTimer: Timer? = nil
     var progressChunk: Float = 0
+    
+    var timer: CountdownTimer? = nil
+    var titleTimer: CountdownTimer? = nil
     
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -30,9 +30,20 @@ class ViewController: UIViewController {
         
         let time = eggTimes[title]
         
-        resetProgressBar()
-        setTimer(time)
+        resetViews()
+        cancelTimers()
         setProgressChunk(time)
+        setTimer(time)
+    }
+    
+    private func resetViews(){
+        resetProgressBar()
+        resetTitleLabel()
+    }
+    
+    private func cancelTimers() {
+        timer?.invalidate()
+        titleTimer?.invalidate()
     }
     
     private func resetProgressBar() {
@@ -43,33 +54,36 @@ class ViewController: UIViewController {
         guard let time = time else {return}
         titleLabel.text = "How do you like your egg?"
         print("Starting new timer")
-        secondsRemaining = time
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
+        timer = CountdownTimer(totalSeconds: time, onTick: onTick, onFinish: onFinish)
+        timer?.start()
     }
     
-    @objc private func updateTimer() {
-        if secondsRemaining > 0 {
-            print("\(secondsRemaining) seconds.")
-            secondsRemaining -= 1
-            progressBar.progress += progressChunk
+    private func onTick() {
+        DispatchQueue.main.async {
+            self.progressBar.progress += self.progressChunk
         }
-        else {
-            titleLabel.text = "Done!"
-            progressBar.progress += progressChunk
-            setTitleTimer()
-            timer?.invalidate()
+    }
+    
+    private func onFinish() {
+        DispatchQueue.main.async {
+            self.titleLabel.text = "Done!"
+            self.progressBar.progress += self.progressChunk
         }
+         setTitleTimer()
     }
     
     private func setProgressChunk(_ time: Int?) {
         guard let time = time else {return}
-        progressChunk = 1.0 / (Float(time) + 1)
+        progressChunk = 1.0 / Float(time)
     }
     
     private func setTitleTimer() {
         titleTimer?.invalidate()
-        titleTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(resetTitleLabel), userInfo: nil, repeats: false)
+        titleTimer = CountdownTimer(totalSeconds: 2, onTick: nil,
+                                    onFinish: resetTitleLabel)
+        titleTimer?.start()
+        //titleTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(resetTitleLabel), userInfo: nil, repeats: false)
     }
     
     @objc private func resetTitleLabel() {

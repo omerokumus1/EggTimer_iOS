@@ -13,6 +13,7 @@
 		D0E3AADE2965D70700ED0DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E3AADC2965D70700ED0DB1 /* Main.storyboard */; };
 		D0E3AAE02965D70800ED0DB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0E3AADF2965D70800ED0DB1 /* Assets.xcassets */; };
 		D0E3AAE32965D70800ED0DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E3AAE12965D70800ED0DB1 /* LaunchScreen.storyboard */; };
+		D0F2D3C929D451BC00142F3C /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F2D3C829D451BC00142F3C /* CountdownTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D0E3AADF2965D70800ED0DB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0E3AAE22965D70800ED0DB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0E3AAE42965D70800ED0DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0F2D3C829D451BC00142F3C /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,38 @@
 			children = (
 				D0E3AAD62965D70700ED0DB1 /* AppDelegate.swift */,
 				D0E3AAD82965D70700ED0DB1 /* SceneDelegate.swift */,
-				D0E3AADA2965D70700ED0DB1 /* ViewController.swift */,
-				D0E3AADC2965D70700ED0DB1 /* Main.storyboard */,
+				D0F2D3C629D4516600142F3C /* models */,
+				D0F2D3C529D4514D00142F3C /* views */,
+				D0F2D3C729D4517000142F3C /* controllers */,
 				D0E3AADF2965D70800ED0DB1 /* Assets.xcassets */,
 				D0E3AAE12965D70800ED0DB1 /* LaunchScreen.storyboard */,
 				D0E3AAE42965D70800ED0DB1 /* Info.plist */,
 			);
 			path = EggTimer;
+			sourceTree = "<group>";
+		};
+		D0F2D3C529D4514D00142F3C /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D0E3AADC2965D70700ED0DB1 /* Main.storyboard */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		D0F2D3C629D4516600142F3C /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D0F2D3C829D451BC00142F3C /* CountdownTimer.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		D0F2D3C729D4517000142F3C /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0E3AADA2965D70700ED0DB1 /* ViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0E3AADB2965D70700ED0DB1 /* ViewController.swift in Sources */,
+				D0F2D3C929D451BC00142F3C /* CountdownTimer.swift in Sources */,
 				D0E3AAD72965D70700ED0DB1 /* AppDelegate.swift in Sources */,
 				D0E3AAD92965D70700ED0DB1 /* SceneDelegate.swift in Sources */,
 			);
